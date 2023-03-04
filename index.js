@@ -6,7 +6,7 @@ class dog {
 
     describe() {
         //console.log(`${this.name} size ${this.breed}`)
-        return `${this.name} size ${this.position}`;
+        return' ${this.name} size${this.position}';
     }
 }
 class breed {
@@ -62,15 +62,15 @@ showMainMenuOptions (breedInfo) {
 `);
     }
     displayBreeds (){
-        let breedString = '    ';
+        let breedString = "      ";
         for (let i = 0; i < this.breeds.length; i++) {
-            breedString += i+ ') ' + this.breeds[i].names+ '\n';
+            breedString += i + ') ' + this.breeds [i].names+ '\n';
         }
         alert (breedString);
     }
     createBreed (){
-        let name= prompt ('Enter name fore new breed');
-        this.breeds.push (new Breed(name));
+        let name= prompt ('Enter name for new breed');
+        this.breeds.push (new Breed (name));
     }
     viewBreed (){
         let index = prompt ('Enter the index of the breed you wish to view');
