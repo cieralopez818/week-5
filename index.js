@@ -1,112 +1,118 @@
-class dog {
-    constructor (name, breed){
+class Dog {
+    constructor (name, breed, size){
         this.name= name;
         this.breed= breed;
+        this.size= size;
     }
+}
+class Shelter {
+    constructor(shelterName) {
+        this.shelterName= shelterName; 
+        this.allDogs = [];
+    }
+    createDogs() {
+        this.allDogs.push(new Dog('Molly', 'Chihuahua', 'Small'))
+    }
+}
 
-    describe() {
-        //console.log(`${this.name} size ${this.breed}`)
-        return' ${this.name} size${this.position}';
-    }
-}
-class breed {
-    constructor (name){
-        this.breed= breed;
-        this.size= [];
-    }
-}
-    class menu {
+class Menu {
         constructor () {
-            this.dog= [];
-            this.selectedDog= null;
+            this.allShelter= [];
         }
-        start (){
+        createShelter() {
+
+        }
+        start () { 
             let selection= this.showMainMenuOptions ();
                 while (selection != 0) {
                     switch (selection) {
                     case '1':
-                        this.createBreed ();
+                        this.createShelter();
                         break;
                     case '2':
-                        this.viewBreed();
+                        this.viewShelter();
                         break;
                     case '3':
-                        this.deleteBreed();
+                        this.deleteShelter();
                         break;
                     case '4':
-                        this.displayBreed();
+                        this.displayAllShelters();
+                        break;
                     default: 
                         selection= 0;            
         }
-        selection= this.showMainMenuOptions ()
+        selection= this.showMainMenuOptions ();
     }
         alert('Goodbye!');
-        }     
-showMainMenuOptions (){
-    return prompt (`
-    0)exit
-    1)createBreed
-    2)viewBreed 
-    3)deleteBreed
-    4)display allBreeds
+        }
+showMainMenuOptions () {
+    return prompt(` 
+    0)Exit
+    1)CreateShelter
+    2)ViewShelter 
+    3)DeleteShelter
+    4)Display allShelters
 `);
-    }
-
-showMainMenuOptions (breedInfo) {
+}
+showShelterMenuOptions (shelterInfo) {
     return prompt (`
         0)back 
-        1)createBreed
-        2)viewBreed 
+        1)createDog
+        2)adoptDog
 ...............
-        ${breedInfo}
+        ${shelterInfo}
 `);
     }
-    displayBreeds (){
-        let breedString = "      ";
-        for (let i = 0; i < this.breeds.length; i++) {
-            breedString += i + ') ' + this.breeds [i].names+ '\n';
+    displayAllShelters () {
+        let shelterString = '       ';
+        for (let i = 0; i < this.allShelter.length; i++) {
+            shelterString += i + ') ' + this.allShelter [i].shelterName+ '\n';
         }
-        alert (breedString);
+        alert (shelterString);
     }
-    createBreed (){
-        let name= prompt ('Enter name for new breed');
-        this.breeds.push (new Breed (name));
+    createShelter (){
+        let name= prompt ('Enter name for new shelter');
+        this.allShelter.push(new Shelter (name));
     }
-    viewBreed (){
-        let index = prompt ('Enter the index of the breed you wish to view');
-        if (index > -1 && index < this.breeds.length){
-            this.selectedBreed = this.breed (index);
-            let description = 'Breed Name: ' + this.selectedBreed.name + '\n';
-            for (let i= 0; i < this.selectedBreed.dogs.length; i++){
-                description += i +')' + this.selectedBreed.dogs[i].name + ''
-                + this.selectedBreed.dogs[i]. size + '\n';
+    viewShelter (){
+        let index = prompt ('Enter the index of the shelter you wish to view');
+        if (index > -1 && index < this.allShelter.length){
+            this.selectedShelter = this.allShelter[index];
+            let description = 'Shelter Name: ' + this.selectedShelter.shelterName + '\n';
+            for (let i= 0; i < this.selectedShelter.allDogs.length; i++){
+                description += i +') ' + this.selectedShelter.allDogs[i].name + ''
+                + this.selectedShelter.allDogs[i]. size +
+                this.selectedShelter.allDogs[i]. breed +
+                '\n';
+                
             }
-        let selection= this.showBreedMenuOptions (description);
+        let selection= this.showShelterMenuOptions (description);
             switch (selection) {
                 case '1':
-                    this.createBreed ();
+                    this.createDog ();
                     break;
                 case '2':
-                    this.viewBreed ();
+                    this.adoptDog ();
            }   } }
-    deleteBreed (){
-        let index = prompt ('Enter the index of the breed you wish to delete:');
-        if (index > -1 && index < this.breeds.length) {
-            this.breeds.splice(index,1);
+    deleteShelter (){
+        let index = prompt ('Enter the index of the shelter you wish to delete:');
+        if (index > -1 && index < this.allShelter.length) {
+            this.allShelter.splice(index,1);
         }
     }
 
-    createBreed (){
-        let dog= prompt ('Enter name for new dog:');
+    createDog (){
+        let name= prompt ('Enter name for new dog:');
+        let breed= prompt ('Enter breed for new dog:');
         let size= prompt ('Enter size for new dog:');
-        this.selectedBreed.dogs.push (newBreed (name, size));
+        this.selectedShelter.allDogs.push (new Dog (name, breed, size));
     }
-    deleteBreed() {
-        let index= prompt ('Enter the index of the breed you wish to delete:');
-        if (index > -1 && index < this.selectedBreed.dogs.length){
-            this.selectedBreed.dogs.splice (index, 1);
+    adoptDog() {
+        let index= prompt ('Enter the index of the breed you wish to adopt:');
+        if (index > -1 && index < this.selectedShelter.allDogs.length){
+            this.selectedShelter.allDogs.splice (index, 1);
         }
     }
-}   
-    let menu= new Menu ();
+}
+    let menu= new Menu();
     menu.start();
